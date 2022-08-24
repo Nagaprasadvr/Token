@@ -1,3 +1,4 @@
+
 import {
     clusterApiUrl,
     Connection,
@@ -19,18 +20,20 @@ import {
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
-function MintToken() {
 
+function MintToken() {
     const connection = new Connection(clusterApiUrl('devnet'),'confirmed');
-    const fromWallet = Keypair.generate();
-    const toWallet = new PublicKey("5VoTHyHmwAw1qw5zgikgywTYDp4fQZ2xujeE96JYYgmW");
+    let fromWallet = Keypair.generate();
+    
+    const toWallet = new PublicKey("6nJx4mGq9z5FTCT4jyRxk3eBMdBY61q4w9n7haYZGCCx");
     let fromTokenAccount: Account;
     let mint: PublicKey;
-
+   
     async function createToken() 
         {
-        const fromAirdropSignature = await connection.requestAirdrop(fromWallet.publicKey, LAMPORTS_PER_SOL);
-
+        
+        
+        await connection.requestAirdrop(fromWallet.publicKey, LAMPORTS_PER_SOL);
         mint = await createMint(
             connection,
             fromWallet,
@@ -93,13 +96,15 @@ function MintToken() {
         console.log('Transfer completed with signature:'+signature);
     }
 
-
-
+   
+   
     return (
   
-      <div  className="App">
-            <nav style = {{fontSize:20,color:"white",fontWeight:"bold",background:"teal",height:"8vh",}} >Mint Token Section</nav>
-            <div style = {{display:"flex",justifyContent:"center",alignItems:"center",height:"50vh"}} className="App">
+      <div className="App" style={{marginLeft:"280px", backgroundImage:"url(/sol.png)",backgroundRepeat:"no-repeat",width:"1000px",justifyContent:"center",alignItems:"center", height:"100vh"}}>
+             {/* <img src={sol}  alt="backgroundImage" style={{height:"100vh",width:"100hh",backgroundSize:"cover",fontSize:"50px",backgroundRepeat:"no-repeat",justifyContent:"center"}}/> */}
+            <h1 style = {{fontSize:20,color:"white",alignItems:"center",textAlign:"center", fontWeight:"bold",background:"teal",height:"100"}}>MInt TOken </h1>
+           
+            <div  style={{display:"flex",justifyContent:"center",alignItems:"center",height:"50vh"}} className="App">
                 <button style = {{fontSize:20,fontWeight:"bold"}} className="btn btn-info btn m-3" onClick={createToken} >Create Token</button>
                 <button style = {{fontSize:20,fontWeight:"bold"}} className="btn btn-primary btn m-3" onClick={mintToken} > Mint Token </button>
                 <button style = {{fontSize:20,fontWeight:"bold"}} className="btn btn-success btn m-3" onClick={checkBalance}>Check Balance</button>
