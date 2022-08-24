@@ -5,7 +5,8 @@ import {
     PublicKey,
     Keypair,
     LAMPORTS_PER_SOL,
-    Signer
+    Signer,
+    sendAndConfirmTransaction
 } from "@solana/web3.js";
 
 import {
@@ -33,7 +34,9 @@ function MintToken() {
         {
         
         
-        await connection.requestAirdrop(fromWallet.publicKey, LAMPORTS_PER_SOL);
+        let sig = await connection.requestAirdrop(fromWallet.publicKey, LAMPORTS_PER_SOL);
+        await connection.confirmTransaction(sig);
+        
         mint = await createMint(
             connection,
             fromWallet,
