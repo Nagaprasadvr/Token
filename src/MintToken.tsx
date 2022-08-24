@@ -35,7 +35,7 @@ function MintToken() {
         
         
         let sig = await connection.requestAirdrop(fromWallet.publicKey, LAMPORTS_PER_SOL);
-        await connection.confirmTransaction(sig);
+        await connection.getTransaction(sig);
         
         mint = await createMint(
             connection,
