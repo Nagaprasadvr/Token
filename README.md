@@ -1,3 +1,8 @@
+A solana api program to create and mint custom tokens . users can use the web app to create a custom token , then mint it to theie wallet and then they can even transfer the tokens to others. 
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
